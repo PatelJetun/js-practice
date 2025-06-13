@@ -26,13 +26,13 @@ const myArr2 = new Array(1, 2, 3, 4, 5, 6, 7)
 
 //slice, splice
 
-console.log("A ",myArray);
+// console.log("A ",myArray);
 
 const myn1 = myArray.slice(1, 3)
 
-console.log(myn1);
-console.log("B ",myArray);
+// console.log(myn1);
+// console.log("B ",myArray);
 
 const myn2 = myArray.splice(1, 3)
-console.log("C ",myArray);
-console.log(myn2);
+// console.log("C ",myArray);
+// console.log(myn2);
