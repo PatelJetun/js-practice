@@ -26,9 +26,13 @@ jsUser.email = "jetunpatel@google.com"
 jsUser.email = "jetun@chatgpt.com"
 // console.log(jsUser);
 
-
 jsUser.greeting = function(){
     console.log("Hello jsUser")
 }   
 
+jsUser.greetingTwo = function(){
+    console.log(`Hellow jsUser ${this.name}`)
+}   
+
 console.log(jsUser.greeting())
+console.log(jsUser.greetingTwo())
