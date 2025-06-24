@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <nav>
+        <input type="search" placeholder="Search here...">
+    </nav>
+
+    <div id="add-task-form">
+        <form>
+            <div class="input-row">
+                <label for="taskName">Task Name: </label>
+                    <input id="taskName" type="text" placeholder="Enter Task Name">
+                <label for="startTime">Start Time: </label>
+                    <input id="startTime" type="datetime-local">
+                <label for="endTime">End Time: </label>
+                    <input id="endTime" type="datetime-local">
+                <label for="priorityLevel">Priority Leve: </label>
+                <select name="priorityLevel" id="priorityLevel">
+                    <option value="highPriority">High</option>
+                    <option value="medPriority">Med</option>
+                    <option value="lowPriority">Low</option>
+                </select>
+            </div>
+            <input id="submitBtn" type="submit" value="Add Task">
+        </form>
+    </div>
+
+    <div id="task-card-container">
+       <div class="task-card">
+            <p clas="task-name">Task: <span>TestText</span> </p>
+            <p clas="task-start">Start: <span>TestText</span> </p>
+            <p clas="task-end">End: <span>TestText</span> </p>
+            <p clas="task-end">Priority Level: <span>TestText</span> </p>
+            <button class="reminder-btn"><i class="fa-solid fa-bell"></i>Reminder</button>
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>

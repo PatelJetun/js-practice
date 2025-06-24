@@ -1,0 +1,81 @@
+body{
+    background-color: #1E1F25;
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav input[type="search"] {
+    width: 45%;
+    background-color: black;
+    padding-left: 2rem;
+    margin: 0.75rem;
+    background: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" stroke-width="2"/></svg>') no-repeat 8px center;
+    background-size: 1rem 1rem;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 4px;
+    height: 2rem;
+}
+
+#add-task-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    /* border: 2px solid white; */
+    box-shadow: 0 4px 24px 0 rgba(93, 64, 128, 0.177), 
+    0 1.5px 4px 0 rgba(72, 44, 44, 0.247);
+    margin: 1rem 1rem;
+    padding: 1rem;
+}
+
+#add-task-form form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#task-card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;   
+}
+
+.task-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    gap: 5rem; 
+    background-color: #2F3039;
+    border-radius: 0.5rem;
+}
+
+.reminder-btn i{
+    color: white;
+}
+
+.reminder-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem;
+    gap: 0.7rem;
+    border: none;
+    border-radius: 0.7rem;
+    color: white;
+    background-color: #282932;
+    transition: transform 0.2s ease;
+}
+
+.reminder-btn:hover{
+    transform: scale(1.1);
+}
