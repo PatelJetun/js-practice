@@ -21,7 +21,7 @@
                     <input id="taskName" type="text" placeholder="Enter Task Name">
                 <label for="endTime">End Time: </label>
                     <input id="endTime" type="datetime-local">
-                <label for="priorityLevel">Priority Leve: </label>
+                <label for="priorityLevel">Priority Level: </label>
                 <select name="priorityLevel" id="priorityLevel">
                     <option value="highPriority">High</option>
                     <option value="medPriority">Med</option>
@@ -36,13 +36,31 @@
        <div class="task-card">
             <p class="task-name">Task: <span>TestText</span> </p>
             <p class="task-end">End: <span>TestText</span> </p>
-            <p class="task-end">Priority Level: <span>TestText</span> </p>
+            <p class="task-priority">Priority Level: <span>TestText</span> </p>
             <button class="reminder-btn"><i class="fa-solid fa-bell"></i>Reminder</button>
             <i class="fa-solid fa-pen edit-btn"></i> 
             <i class="fa-solid fa-trash delete-btn"></i>
             <p class="time-counter">Time: <span>Test Time</span></p>
         </div>
     </div>
+
+    <div id="editModal">
+        <div class="editform">
+            <form >
+                <label for="editTaskName">Task Name: </label><input type="text" id="editTaskName">
+                <label for="editTaskDate">Task Date: </label><input type="datetime-local" id="editTaskDate">
+                <label for="editPriorityLevel">Priority Leve: </label>
+                <select name="editPriorityLevel" id="editPriorityLevel">
+                    <option value="highPriority">High</option>
+                    <option value="medPriority">Med</option>
+                    <option value="lowPriority">Low</option>
+                </select>
+                <input type="submit" value="Submit" id="submitEditForm">
+                <button type="button" id="closeEditModal" style="position:absolute;top:10px;right:10px;">&times;</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 <script src="index.js"></script>
 </html>

@@ -3,6 +3,7 @@ const endTime = document.querySelector("#endTime");
 const priorityLevel = document.querySelector("#priorityLevel");
 const submitBtn = document.querySelector("#submitBtn");
 const taskCardContainer = document.querySelector("#task-card-container");
+const editModal = document.querySelector("#editModal");
 
 submitBtn.addEventListener("click", function (e) {
   // Accept form data
@@ -22,9 +23,7 @@ taskCardContainer.addEventListener("click", function (e) {
     if (card) {
       removeCard(card);
     }
-  }
-
-  if (e.target.classList.contains("reminder-btn")) {
+  } else if (e.target.classList.contains("reminder-btn")) {
     const card = e.target.closest(".task-card");
 
     if (card && !card.reminderEnabled) {
@@ -34,6 +33,12 @@ taskCardContainer.addEventListener("click", function (e) {
       e.target.classList.toggle("active", false);
       card.reminderEnabled = false;
     }
+  } else if (e.target.classList.contains("edit-btn")) {
+    const card = e.target.closest(".task-card");
+    console.log("edit btn clicked");
+    console.log(card);
+    autoFillEditModalForm(card);
+    editModal.style.display = "block";
   }
 });
 
@@ -55,13 +60,15 @@ function addTaskCard() {
   const taskCard = document.createElement("div");
   taskCard.classList.add("task-card");
 
-  taskCard.innerHTML = `<p clas="task-name">Task: <span>${taskName.value}</span> </p>
+  taskCard.innerHTML = `
+  <p class="task-name">Task: <span>${taskName.value}</span> </p>
   <p class="task-end">End: <span>${endTime.value}</span> </p>
-  <p class="task-end">Priority Level: <span>${priorityLevel.value}</span> </p>
+  <p class="task-priority">Priority Level: <span>${priorityLevel.value}</span> </p>
   <button class="reminder-btn"><i class="fa-solid fa-bell"></i>Reminder</button>
   <i class="fa-solid fa-pen edit-btn"></i> 
   <i class="fa-solid fa-trash delete-btn"></i>
-  <p class="time-counter">Time: <span>Test Time</span></p>`;
+  <p class="time-counter">Time: <span>Test Time</span></p>
+`;
 
   taskCardContainer.appendChild(taskCard);
 
@@ -109,3 +116,29 @@ function checkReminder(card) {
     alert("Reminder Activated");
   }
 }
+
+function autoFillEditModalForm(card) {
+  const editTaskName = document.querySelector("#editTaskName");
+  const editTaskDate = document.querySelector("#editTaskDate");
+  const editPriorityLevel = document.querySelector("#editPriorityLevel");
+
+  const taskName = card.querySelector(".task-name span").textContent;
+  const taskDate = card.querySelector(".task-end span").textContent;
+  const priorityLevel = card.querySelector(".task-priority span").textContent;
+
+  // Fill the modal fields
+  editTaskName.value = taskName;
+  editTaskDate.value = taskDate;
+  editPriorityLevel.value = priorityLevel;
+}
+
+const closeEditModalBtn = document.getElementById("closeEditModal");
+closeEditModalBtn.addEventListener("click", function () {
+  editModal.style.display = "none";
+});
+
+editModal.addEventListener("click", function (event) {
+  if (event.target === editModal) {
+    editModal.style.display = "none";
+  }
+});

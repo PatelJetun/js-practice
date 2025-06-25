@@ -48,7 +48,7 @@ nav input[type="search"] {
     gap: 0.938rem;
 }
 
-.input-row input[type="text"], input[type="datetime-local"]{
+input[type="text"], input[type="datetime-local"]{
     border-radius: 1rem;
     padding: 0.5rem;
     color: white;
@@ -116,4 +116,120 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 .edit-btn:hover, .delete-btn:hover{
     transform: scale(1.1);
     color: rgb(169, 91, 183);
+}
+
+#editModal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background: rgba(30, 31, 37, 0.85);
+    /* darker, less transparent */
+    backdrop-filter: blur(2px);
+    /* subtle blur for background */
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.editform {
+    background: linear-gradient(135deg, #fff 70%, #e6e6fa 100%);
+    color: #222;
+    margin: 5% auto 0 auto;
+    padding: 2.5rem 2rem 2rem 2rem;
+    border-radius: 1.2rem;
+    width: 95%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: 0 8px 32px 0 rgba(60, 40, 120, 0.25), 0 1.5px 4px 0 rgba(72, 44, 44, 0.15);
+    animation: slideDown 0.4s cubic-bezier(.25, .8, .25, 1);
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-40px) scale(0.98);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.editform label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    color: #444;
+    letter-spacing: 0.5px;
+}
+
+.editform input[type="text"],
+.editform input[type="datetime-local"],
+.editform select {
+    width: 90%;
+    margin-bottom: 1.2rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.7rem;
+    border: 1px solid #cfcfe6;
+    background: #f7f7fc;
+    color: #222;
+    font-size: 1rem;
+    transition: border 0.2s;
+}
+
+.editform input[type="text"]:focus,
+.editform input[type="datetime-local"]:focus,
+.editform select:focus {
+    border: 1.5px solid #a35eea;
+    outline: none;
+}
+
+.editform input[type="submit"] {
+    background: linear-gradient(90deg, #a35eea 60%, #6e8efb 100%);
+    color: #fff;
+    border: none;
+    border-radius: 0.7rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+}
+
+.editform input[type="submit"]:hover {
+    background: linear-gradient(90deg, #6e8efb 60%, #a35eea 100%);
+    transform: scale(1.04);
+}
+
+#closeEditModal {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #a35eea;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+    z-index: 1;
+}
+
+#closeEditModal:hover {
+    color: #6e8efb;
+    transform: scale(1.2);
 }
