@@ -19,8 +19,6 @@
             <div class="input-row">
                 <label for="taskName">Task Name: </label>
                     <input id="taskName" type="text" placeholder="Enter Task Name">
-                <label for="startTime">Start Time: </label>
-                    <input id="startTime" type="datetime-local">
                 <label for="endTime">End Time: </label>
                     <input id="endTime" type="datetime-local">
                 <label for="priorityLevel">Priority Leve: </label>
@@ -37,10 +35,12 @@
     <div id="task-card-container">
        <div class="task-card">
             <p clas="task-name">Task: <span>TestText</span> </p>
-            <p clas="task-start">Start: <span>TestText</span> </p>
             <p clas="task-end">End: <span>TestText</span> </p>
             <p clas="task-end">Priority Level: <span>TestText</span> </p>
             <button class="reminder-btn"><i class="fa-solid fa-bell"></i>Reminder</button>
+            <i class="fa-solid fa-pen edit-btn"></i> 
+            <i class="fa-solid fa-trash delete-btn"></i>
+            <p class="time-counter">Time: <span>Test Time</span></p>
         </div>
     </div>
 </body>

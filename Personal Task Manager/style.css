@@ -41,6 +41,29 @@ nav input[type="search"] {
     gap: 2rem;
 }
 
+.input-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.938rem;
+}
+
+.input-row input[type="text"], input[type="datetime-local"]{
+    border-radius: 1rem;
+    padding: 0.5rem;
+    color: white;
+    background-color: #0b0d1a7c;
+    border: none;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator{
+    filter: invert(100%);
+}
+
+::placeholder {
+    color: white;
+}
+
 #task-card-container{
     display: flex;
     flex-direction: column;
@@ -57,6 +80,8 @@ nav input[type="search"] {
     gap: 5rem; 
     background-color: #2F3039;
     border-radius: 0.5rem;
+    width: 85%;
+    box-sizing: border-box;
 }
 
 .reminder-btn i{
@@ -78,4 +103,13 @@ nav input[type="search"] {
 
 .reminder-btn:hover{
     transform: scale(1.1);
+}
+
+.edit-btn, .delete-btn{
+    transition: all 0.2s ease;
+}
+
+.edit-btn:hover, .delete-btn:hover{
+    transform: scale(1.1);
+    color: rgb(169, 91, 183);
 }
