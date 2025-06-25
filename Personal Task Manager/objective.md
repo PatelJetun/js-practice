@@ -2,11 +2,11 @@
 
 ## Features
 - ### Core Features
-    - Add, edit, delete tasks
+    - Add, edit, delete tasks > Edit pending
     - Tag Tasks(priority, category)
-    - Show time remaining for each task using live countdown
+    - Show time remaining for each task using live countdown > completed
     - Persist tasks in localStorage
-    - Set reminder alarms (simulate notification)
+    - Set reminder alarms (simulate notification) > completed
 
 - ### What I'll Learns
     - In-depth Date/time operations
