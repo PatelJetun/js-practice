@@ -105,6 +105,10 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
     transform: scale(1.1);
 }
 
+.active {
+    background-color: rgb(71, 94, 103);
+}
+
 .edit-btn, .delete-btn{
     transition: all 0.2s ease;
 }

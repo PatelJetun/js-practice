@@ -24,15 +24,17 @@ taskCardContainer.addEventListener("click", function (e) {
     }
   }
 
-  if (e.target.classList.contains("reminder-btn")){
-      const card = e.target.closest(".task-card")
-      if(card){
-        card.reminderEnabled = true;
-        console.log("Reminder Enabled for this card");
-      }
+  if (e.target.classList.contains("reminder-btn")) {
+    const card = e.target.closest(".task-card");
+
+    if (card && !card.reminderEnabled) {
+      e.target.classList.toggle("active", true);
+      card.reminderEnabled = true;
+    } else if (card && card.reminderEnabled) {
+      e.target.classList.toggle("active", false);
+      card.reminderEnabled = false;
+    }
   }
-
-
 });
 
 function checkInput() {
@@ -63,23 +65,22 @@ function addTaskCard() {
 
   taskCardContainer.appendChild(taskCard);
 
-  const timeSpan = taskCard.querySelector(".time-counter span")
-  const timerId =   calculateTime(endTime.value, timeSpan);
-  taskCard.timerId = timerId; 
+  const timeSpan = taskCard.querySelector(".time-counter span");
+  const timerId = calculateTime(endTime.value, timeSpan);
+  taskCard.timerId = timerId;
   taskCard.reminderEnabled = false;
 }
 function removeCard(card) {
   //Remove Card
-  if (card.timerId){
-    console.log(`Clear Interval Called ${card.timerId} freed`);
-    clearInterval(card.timerID)
+  if (card.timerId) {
+    clearInterval(card.timerId);
   }
   card.remove();
 }
 
 function calculateTime(end, displayElement) {
   const endTime = new Date(end);
-  const card = displayElement.closest(".task-card")
+  const card = displayElement.closest(".task-card");
 
   function updateCounter() {
     const currentTime = new Date();
@@ -87,10 +88,8 @@ function calculateTime(end, displayElement) {
 
     if (remaining <= 0) {
       clearInterval(timer);
-      displayElement.textContent = "Time is Up!"
-      if(card.reminderEnabled){
-        alert("Reminder Activated");
-      }
+      displayElement.textContent = "Time is Up!";
+      checkReminder(card);
       return;
     }
 
@@ -100,7 +99,13 @@ function calculateTime(end, displayElement) {
 
     displayElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
   }
-  updateCounter(); 
+  updateCounter();
   const timer = setInterval(updateCounter, 1000);
   return timer;
+}
+
+function checkReminder(card) {
+  if (card.reminderEnabled) {
+    alert("Reminder Activated");
+  }
 }
