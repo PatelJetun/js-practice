@@ -4,6 +4,12 @@ const priorityLevel = document.querySelector("#priorityLevel");
 const submitBtn = document.querySelector("#submitBtn");
 const taskCardContainer = document.querySelector("#task-card-container");
 const editModal = document.querySelector("#editModal");
+const submitEditBtn = document.querySelector("#submitEditForm");
+
+const editTaskName = document.querySelector("#editTaskName");
+const editTaskDate = document.querySelector("#editTaskDate");
+const editPriorityLevel = document.querySelector("#editPriorityLevel");
+let clickedCard = null
 
 submitBtn.addEventListener("click", function (e) {
   // Accept form data
@@ -36,7 +42,8 @@ taskCardContainer.addEventListener("click", function (e) {
   } else if (e.target.classList.contains("edit-btn")) {
     const card = e.target.closest(".task-card");
     console.log("edit btn clicked");
-    console.log(card);
+    clickedCard = card
+    console.log(clickedCard);
     autoFillEditModalForm(card);
     editModal.style.display = "block";
   }
@@ -118,15 +125,10 @@ function checkReminder(card) {
 }
 
 function autoFillEditModalForm(card) {
-  const editTaskName = document.querySelector("#editTaskName");
-  const editTaskDate = document.querySelector("#editTaskDate");
-  const editPriorityLevel = document.querySelector("#editPriorityLevel");
-
   const taskName = card.querySelector(".task-name span").textContent;
   const taskDate = card.querySelector(".task-end span").textContent;
   const priorityLevel = card.querySelector(".task-priority span").textContent;
 
-  // Fill the modal fields
   editTaskName.value = taskName;
   editTaskDate.value = taskDate;
   editPriorityLevel.value = priorityLevel;
@@ -142,3 +144,26 @@ editModal.addEventListener("click", function (event) {
     editModal.style.display = "none";
   }
 });
+
+submitEditBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log("Task Edited Successfully");
+  editTaskCard()
+  editModal.style.display = "none";
+});
+
+  function editTaskCard() {
+    if (clickedCard.timerId) clearInterval(clickedCard.timerId);
+    
+    clickedCard.querySelector(".task-name span").textContent =
+      editTaskName.value;
+    clickedCard.querySelector(".task-end span").textContent =
+      editTaskDate.value;
+    clickedCard.querySelector(".task-priority span").textContent =
+      editPriorityLevel.value;
+
+    const timeSpan = clickedCard.querySelector(".time-counter span");
+    const timerId = calculateTime(editTaskDate.value, timeSpan);
+    clickedCard.timerId = timerId;
+  }
+
