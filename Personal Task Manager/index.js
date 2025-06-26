@@ -6,12 +6,12 @@ const taskCardContainer = document.querySelector("#task-card-container");
 const editModal = document.querySelector("#editModal");
 const submitEditBtn = document.querySelector("#submitEditForm");
 
-const taskCardArr = new Array()
+const taskCardArr = new Array();
 
 const editTaskName = document.querySelector("#editTaskName");
 const editTaskDate = document.querySelector("#editTaskDate");
 const editPriorityLevel = document.querySelector("#editPriorityLevel");
-let clickedCard = null
+let clickedCard = null;
 
 submitBtn.addEventListener("click", function (e) {
   // Accept form data
@@ -44,7 +44,7 @@ taskCardContainer.addEventListener("click", function (e) {
   } else if (e.target.classList.contains("edit-btn")) {
     const card = e.target.closest(".task-card");
     console.log("edit btn clicked");
-    clickedCard = card
+    clickedCard = card;
     console.log(clickedCard);
     autoFillEditModalForm(card);
     editModal.style.display = "block";
@@ -65,29 +65,28 @@ function checkInput() {
 }
 
 function addTaskCard() {
+  const taskData = {
+    taskId: Date.now(),
+    taskName: taskName.value,
+    taskDate: endTime.value,
+    taskPriority: priorityLevel.value,
+    reminderEnabled: false,
+  };
 
-const taskData = {
-  taskId: Date.now(),
-  taskName: taskName.value,
-  taskDate: endTime.value,
-  taskPriority: priorityLevel.value,
-  reminderEnabled: false
-};
+  console.log(taskData.taskId);
+  console.log(taskData.taskName);
+  console.log(taskData.taskDate);
+  console.log(taskData.taskPriority);
+  console.log(taskData.reminderEnabled);
 
-console.log(taskData.taskId);
-console.log(taskData.taskName);
-console.log(taskData.taskDate);
-console.log(taskData.taskPriority);
-console.log(taskData.reminderEnabled);
-
-taskCardArr.push(taskData);
-console.log(taskCardArr);
-renderTaskCards();
+  taskCardArr.push(taskData);
+  console.log(taskCardArr);
+  renderTaskCards();
 }
 
-function renderTaskCards(){
+function renderTaskCards() {
   taskCardContainer.innerHTML = "";
-  taskCardArr.forEach(task => {
+  taskCardArr.forEach((task) => {
     const taskCard = document.createElement("div");
     taskCard.classList.add("task-card");
     taskCard.dataset.id = task.taskId;
@@ -112,9 +111,8 @@ function renderTaskCards(){
     const timerId = calculateTime(task.taskDate, timeSpan);
     taskCard.timerId = timerId;
     taskCard.reminderEnabled = task.reminderEnabled;
-  })
+  });
 }
-
 
 function removeCard(card) {
   const taskId = Number(card.dataset.id);
@@ -183,7 +181,7 @@ editModal.addEventListener("click", function (event) {
 submitEditBtn.addEventListener("click", function (e) {
   e.preventDefault();
   console.log("Task Edited Successfully");
-  editTaskCard()
+  editTaskCard();
   editModal.style.display = "none";
 });
 
@@ -200,4 +198,3 @@ function editTaskCard() {
   }
   renderTaskCards();
 }
-
