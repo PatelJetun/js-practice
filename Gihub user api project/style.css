@@ -1,0 +1,56 @@
+body {
+    /* position: relative; */
+    background-color: #1E1F25;
+    color: white;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: black;
+}
+
+nav input[type="search"] {
+    width: 45%;
+    background-color: black;
+    padding-left: 2rem;
+    margin: 0.75rem;
+    background: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="white" stroke-width="2"/></svg>') no-repeat 8px center;
+    background-size: 1rem 1rem;
+    color: white;
+    border: 1px solid rgb(124, 124, 124);
+    border-radius: 0.313rem;
+    height: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+#search-box {
+    background-color: #151515;
+    overflow: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; 
+    border: 2px solid rgb(124, 124, 124);
+    border-radius: 0.313rem;
+    z-index: 10000;
+    width: 45%;
+    max-height: 30%;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+#search-box li{
+    padding: 0.5rem 0rem 0.5rem 1rem;
+}
+
+#search-box li:hover{
+    background-color: rgb(82, 82, 82);
+}

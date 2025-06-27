@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Github User Search</title>
+</head>
+<body>
+    <nav>
+        <input id="search-bar" type="search" placeholder="Search here...">
+    </nav>
+
+    <div id="search-box">
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+        <li>Test Search Item</li>
+       
+    </div>
+
+</body>
+
+<script>
+
+    const searchBar = document.querySelector('#search-bar')
+    const searchBox = document.querySelector('#search-box')
+    
+    searchBar.addEventListener('focus', () => {
+        console.log("search Bars is active");
+        displaySearchBox();
+    })
+
+    searchBar.addEventListener('blur', () => {
+        console.log('Seacrch bar out of focus');
+        hideSearchBox();
+    })
+
+    function displaySearchBox(){
+        console.log("displaySeach called");
+        searchBox.style.display = 'block';
+    }
+
+    function hideSearchBox() {
+        searchBox.style.display = 'none';
+    }
+
+</script>
+
+</html>
