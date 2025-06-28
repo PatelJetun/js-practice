@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: black; color: white"></body>
+  <script>
+    function debounce(func, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          func.apply(this, args);
+        }, delay);
+      };
+    }
+
+    function search(query){
+        console.log(`Searching for: ${query}`);
+    }
+
+    const dSearch = debounce(search, 300)
+
+    dSearch("H")
+    dSearch("He")
+    dSearch("Hel")
+    dSearch("Hell")
+    dSearch("Hello")
+    dSearch("T")
+    dSearch("Test")
+    
+  </script>
+</html>
