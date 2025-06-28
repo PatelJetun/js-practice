@@ -47,4 +47,3 @@ function displaySearchBox() {
 function hideSearchBox() {
   searchBox.style.display = "none";
 }
-
