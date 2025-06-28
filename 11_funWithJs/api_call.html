@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: black; color: white">
+    <p id="name">Name: <span></span></p>
+    <ul id="repo-list"></ul>
+  </body>
+  <script>
+    let repoURL = null;
+    const ul = document.querySelector('#repo-list')
+
+    async function getData() {
+      const url = "https://api.github.com/users/hiteshchoudhary";
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        return json;
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
+    async function getRepos() {
+      const url = repoURL;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        return json;
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
+    getData().then((data) => {
+      if (data) {
+        document.querySelector("#name span").textContent = data.name;
+        repoURL = data.repos_url;
+        
+        getRepos().then((data) => {
+          if (data) {
+            data.forEach(element => {
+                const li = document.createElement('li')
+                li.innerText = element.name
+                ul.appendChild(li)
+            });
+          }
+        });
+      }
+    });
+  </script>
+</html>
