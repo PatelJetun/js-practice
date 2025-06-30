@@ -1,5 +1,6 @@
 const searchBar = document.querySelector("#search-bar");
 const searchBox = document.querySelector("#search-box");
+const div = document.querySelector(".user");
 
 // searchBox.innerHTML = ''
 
@@ -46,7 +47,15 @@ searchBar.addEventListener("keyup", () => {
 
 searchBox.addEventListener("mousedown", (e) => {
   if (e.target.classList.contains("search-box-list")) {
-    console.log(`Value: ${e.target.innerText}`);
+    div.style.display = "none";
+    const user = e.target.innerText;
+    console.log(`Value: ${user}`);
+    searchBar.value = user;
+    getUserData(user).then((data) => {
+      if (data) {
+        displayUserData(data);
+      }
+    });
   }
 });
 
@@ -80,6 +89,43 @@ function fillSearchBox(users) {
   });
 }
 
+function displayUserData(data) {
+  const h2 = document.querySelector("#user-h2");
+  const userName = document.querySelector("#user-name");
+  const followers = document.querySelector("#user-followers span");
+  const following = document.querySelector("#user-following span");
+  userName.innerHTML = `${data.login}`;
+  followers.innerHTML = `${data.followers}`;
+  following.innerHTML = `${data.following}`;
+  h2.innerHTML = `${data.login}'s Repositories`;
+  getUserRepo(data.repos_url).then((data) => {
+    if(data){
+      displayUserRepo(data)
+    }
+  });
+  div.style.display = "block";
+}
+
+function displayUserRepo(data) {
+  const grid = document.querySelector("#user-repo-grid");
+  grid.innerHTML = ''
+  data.forEach((value) => {
+    const card = document.createElement("div");
+    card.classList.add('repo-card')
+    card.innerHTML = `<div class="repo-name">
+                        <h2 class="repo-card-name">${value.name}</h2>
+                        <p class="repo-description">${value.description}</p>
+                      </div>
+
+                    <div class="repo-data">
+                        <p class="repo-language">Languages: <span>${value.language}</span></p>
+                        <p class="repo-clone-url">Clone url: <span><a href=${value.clone_url}>Click Here</a></span></p>
+                        <p class="repo-subscribers">Fork Count: <span>${value.forks_count}</span></p>
+                    </div>`;
+    grid.appendChild(card)
+  });
+}
+
 function debounce(func, delay) {
   let timeout;
   return function (...args) {
@@ -100,8 +146,35 @@ async function getSearchData(search) {
     const json = await response.json();
     return json;
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 }
 
+async function getUserData(user) {
+  const url = `https://api.github.com/users/${user}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+async function getUserRepo(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error(`Response status: ${response.status}`);
+    }
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 // https://api.github.com/search/users?q=
+// https://api.github.com/users/;

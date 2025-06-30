@@ -54,6 +54,7 @@ nav input[type="search"] {
 }
 
 .user{
+    display: none;
     padding: 1rem;
 }
 
