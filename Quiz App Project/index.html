@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Quiz Web App</title>
+</head>
+
+<body>
+    <header>
+        <div id="nav-score">
+            <div class="score">
+                <i class="fa-solid fa-star" style="color: #31cd63;"></i> <!--fa-beat-->
+                <span>500</span>
+            </div>
+        </div>
+
+        <div id="nav-title">
+            <h2>Fantasy Quiz #<span>111</span></h2>
+        </div>
+        <div id="nav-right">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </header>
+
+    <div id="quiz-card">
+        <div id="quiz-question">
+            <h2>Predict the biggest loser of Tomorrow?</h2>
+        </div>
+        <div id="quiz-option">
+            <div id="option-one">
+                <span class="option-letter">A</span>
+                <p class="option">Option 1</p>
+            </div>
+            <div id="option-two">
+                <span class="option-letter">B</span>
+                <p class="option">Option 2</p>
+            </div>
+            <div id="option-three">
+                <span class="option-letter">C</span>
+                <p class="option">Option 3</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="progress-bar">
+            <progress id="progress" value="8" max="15"></progress>
+            <label for="progress">1/15</label>
+        </div>
+        <div class="continue">
+            <button class="continue-btn">CONTINUE</button>
+        </div>
+
+    </footer>
+</body>
+<script src="index.js"></script>
+
+</html>
+
+
+<!-- <i class="fa-solid fa-check" style="color: #31cd63;"></i> -->
