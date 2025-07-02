@@ -1,17 +1,33 @@
-const option = document.querySelector('#quiz-card')
-let clicked = false
+const option = document.querySelector("#quiz-card");
+const options = document.querySelectorAll("#quiz-option div");
+const btn = document.querySelector('#continue-btn')
 
-option.addEventListener('click', (e) => {
-    if(e.target.id === "option-one" || e.target.id === "option-two" || e.target.id === "option-three"){
-        if(!clicked){
-            clicked = true;
-            const selectedOption = document.getElementById(e.target.id);
-            const label = selectedOption.querySelector(".option-letter");
-            label.innerHTML = `<i class="fa-solid fa-check" style="color: #31cd63;"></i>`;
-            selectedOption.classList.add("active");
-            console.log(
-              `${e.target.id} clicked and Value of clicked: ${clicked}`
-            );
-        }
-    }
+option.addEventListener("click", (e) => {
+  if (
+    e.target.id === "option-one" ||
+    e.target.id === "option-two" ||
+    e.target.id === "option-three"
+  ) {
+    setOptionStyle(e.target.id);
+  }
+});
+
+btn.addEventListener('click', () => {
+  const answer = document.querySelector('.active p').textContent
+  if(answer === "option1"){
+    
+  }
 })
+
+
+function setOptionStyle(id) {
+
+  options.forEach((option) => {
+    option.classList = ''
+    if(option.id === id){
+      option.classList.add('active')
+    }
+  });
+}
+
+

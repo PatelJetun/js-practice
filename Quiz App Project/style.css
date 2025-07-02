@@ -144,7 +144,7 @@ progress::-webkit-progress-value {
     font-size: 1.2rem;
 }
 
-.continue-btn {
+#continue-btn {
     color: #EDE8E2;
     background-color: #9a9a9b;
     border: none;
@@ -156,12 +156,11 @@ progress::-webkit-progress-value {
     transition: all 0.5s ease;
 }
 
-.continue-btn:hover {
+#continue-btn:hover {
     transform: scale(0.95);
 }
 
 .active {
-    color: white;
     background-image: linear-gradient(#31CD63, #45C486)
 }
 
