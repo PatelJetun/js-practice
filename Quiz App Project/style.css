@@ -193,11 +193,18 @@ progress::-webkit-progress-value {
     transform: scale(0.95);
 }
 
-.active {
+.active-correct {
     background-image: linear-gradient(#31CD63, #45C486)
 }
 
-.active .option-letter {
+.active-correct .option-letter {
+    background-color: white;
+}
+.active-wrong {
+    background-image: linear-gradient(#cd3131, #de0e0e)
+}
+
+.active-wrong .option-letter {
     background-color: white;
 }
 
