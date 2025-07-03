@@ -14,7 +14,10 @@
         <div id="nav-score">
             <div class="score">
                 <i class="fa-solid fa-star" style="color: #31cd63;"></i> <!--fa-beat-->
-                <span>500</span>
+                <span>0</span>
+            </div>
+            <div class="high-score">
+                High Score:<span></span>
             </div>
         </div>
 
@@ -26,30 +29,34 @@
         </div>
     </header>
 
+    <div id="startButton">
+        <button id="start-btn">Start Quiz</button>
+    </div>
+
     <div id="quiz-card">
         <div id="quiz-question">
-            <h2>Predict the biggest loser of Tomorrow?</h2>
+            <h2></h2>
         </div>
         <div id="quiz-option">
-            <div id="option-one">
+            <button type="button" id="option-one">
                 <span class="option-letter">A</span>
-                <p class="option">Option 1</p>
-            </div>
-            <div id="option-two">
+                <p class="option"></p>
+            </button>
+            <button type="button" id="option-two">
                 <span class="option-letter">B</span>
-                <p class="option">Option 2</p>
-            </div>
-            <div id="option-three">
+                <p class="option"></p>
+            </button>
+            <button type="button" id="option-three">
                 <span class="option-letter">C</span>
-                <p class="option">Option 3</p>
-            </div>
+                <p class="option"></p>
+            </button>
         </div>
     </div>
 
     <footer>
         <div class="progress-bar">
-            <progress id="progress" value="8" max="15"></progress>
-            <label for="progress">1/15</label>
+            <progress id="progress" value="1" max="5"></progress>
+            <label for="progress">1/5</label>
         </div>
         <div class="continue">
             <button id="continue-btn">CONTINUE</button>

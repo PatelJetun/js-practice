@@ -2,10 +2,10 @@ body {
     font-family: sans-serif;
     background-color: #EDE8E3;
     margin: 0;
-
 }
 
 header {
+    margin: 0.5rem 0 0 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,14 +16,13 @@ header {
 
 #nav-score {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    flex-direction: column;
     padding: 0.313rem;
     border-radius: 0.313rem;
     background-color: #F4F3F6;
-}
-
-.score {
+    gap: 0.313rem;
     font-weight: bold;
     font-size: 1.5rem;
 }
@@ -51,8 +50,36 @@ header {
     transform: scale(1.12);
 }
 
-#quiz-card {
+#startButton{
+    position: absolute;
+    top: 50%;
+    left: 50%;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid red; */
+    transform: translate(-50%, -50%);
+}
+
+#start-btn{
+    background-color: #45C486;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+#start-btn:hover{
+    transform: scale(1.12);
+    background-color: #176f44;
+}
+
+#quiz-card {
+    display: none;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -73,7 +100,7 @@ header {
     width: 100%;
 }
 
-#quiz-option div {
+#quiz-option button {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -83,9 +110,15 @@ header {
     width: 50%;
     border-radius: 0.313rem;
     transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    outline: none;
 }
 
-#quiz-option div:hover {
+#quiz-option button:hover {
     transform: scale(1.05);
 }
 
