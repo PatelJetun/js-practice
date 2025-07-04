@@ -11,9 +11,14 @@ const p2 = document.querySelector("#option-two p");
 const p3 = document.querySelector("#option-three p");
 const highScoreDiv = document.querySelector(".high-score span");
 const continueBtn = document.querySelector('#continue-btn')
+const progressBar = document.querySelector('#progress')
+const progressLabel = document.querySelector(".progress-bar label");
+const footer = document.querySelector("footer");
+
 
 let counter = 0;
 let score = 0;
+let answered = false
 
 let localHighScore = localStorage.getItem("highScore");
 
@@ -22,13 +27,22 @@ if (localHighScore) {
 } 
 
 startBtn.addEventListener("click", startQuiz);
+continueBtn.addEventListener("click", handleContinueClick);
 
 //Starts the quize when start button is clicked
 function startQuiz() {
   if (flag) {
     enableListeners();
+    enableFooter();
     initialCard();
   }
+}
+
+function endQuiz() {
+  startBtn.style.display = "block";
+  quizCard.style.display = "none";
+  storeHighScore()
+  window.location.reload();
 }
 
 //Intially loads the first quiz card
@@ -40,6 +54,7 @@ function initialCard() {
   p1.innerHTML = data.option1;
   p2.innerHTML = data.option2;
   p3.innerHTML = data.option3;
+  handleProgressBar()
 }
 
 //Enables click listeners on options
@@ -61,6 +76,7 @@ function hadleOptionClick(e) {
   const clickedOption = e.target;
   const answer = e.target.querySelector(".option").textContent;
   disableListeners();
+  answered = true
   verifyAnswer(clickedOption, answer);
 }
 
@@ -94,110 +110,76 @@ function handleScore(flag) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Enables footer when quize is started
+function enableFooter(){
+  footer.style.display = 'flex'
+}
+
+//handles continue button click
+function handleContinueClick(){
+  if(!answered){
+    alert('Please answer this question before going to the next one')
+  }
+  else if(answered){
+    console.log('Continue clicked');
+    if(counter < quiz.length){
+      counter++
+      if(counter === quiz.length){
+        flag = false
+        
+      } else{
+        nextCard();
+      }
+      if (!flag) {
+        endQuiz();
+      }
+    }
+    
+    answered = false
+  }
+}
+
+//displays next quiz card
+function nextCard(){
+  enableListeners()
+  option1.classList = ''
+  option2.classList = ''
+  option3.classList = ''
+  originalOptionLetter()
+  const data = quiz[counter];
+  queston.innerHTML = data.question;
+  p1.innerHTML = data.option1;
+  p2.innerHTML = data.option2;
+  p3.innerHTML = data.option3;
+  handleProgressBar()
+}
+
+//displays original option letter i.e 'A','B','C'
+function originalOptionLetter(){
+  const ol1 = option1.querySelector('span')
+  const ol2 = option2.querySelector('span')
+  const ol3 = option3.querySelector("span");
+  ol1.innerHTML = ol1.dataset.original
+  ol2.innerHTML = ol2.dataset.original
+  ol3.innerHTML = ol3.dataset.original
+  
+}
+
+//handles Progress Bar Values
+function handleProgressBar(){
+  progressBar.max = quiz.length
+  progressBar.value = counter + 1
+  progressLabel.innerHTML = `${counter + 1}/${quiz.length}`
+}
+
+//stores high score in localStorage
+function storeHighScore(){
+  if (score > localHighScore){
+    localStorage.setItem('highScore', score)
+  }
+}
+
+//Quiz Data
 const quiz = [
   {
     question: "What is the Capital of India?",
