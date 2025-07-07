@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: black; color: white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const localData = [
+      {
+        category: "Test",
+        tasks: [
+          {
+            id: 1234,
+            title: "Task1",
+            description: "Description1",
+            likes: 0,
+            types: {
+                '#FFFFFF': 'type',
+                '#CDCDCD': 'type',
+                '#FAFAFA': 'type',
+                '#BABABA': 'type'
+            }
+          },
+        ],
+      },
+      {
+        category: "Test2",
+        tasks: [
+          {
+            id: 9090,
+            title: "Task2",
+            description: "Description2",
+            likes: 0,
+            types: {
+                '#FFFFFF': 'type',
+                '#CDCDCD': 'type',
+                '#FAFAFA': 'type',
+                '#BABABA': 'type'
+            }
+          },
+        ],
+      },
+    ];
+
+
+    const newCategory = {
+        category: 'New Category',
+        tasks: []
+    }
+
+    localData.push(newCategory)
+
+    localData.forEach((value) => {
+        console.log(value);
+        console.log(value.category);
+        value.tasks.forEach((task) => {
+            console.log(task.id);
+            console.log(task.title);
+            console.log(task.description);
+            console.log(task.likes);
+            Object.entries(task.types).forEach(([color,type]) => {
+                console.log('Color: ',color);
+                console.log('Type: ',type);
+            })
+            
+        })
+        
+    })
+
+
+  </script>
+</html>
