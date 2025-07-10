@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: black; color: white    ;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop in HTML</title>
+    <style>
+        body, html{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .container,.col{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid red;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .col{
+            flex-direction: column;
+            border: 2px solid white;
+            width: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col">
+            <div class="card">
+                <p class = "draggablep" data-id="1" draggable="true">Card 1</p>
+            </div>
+        </div>
+        <div class="col" id="col2">
+
+        </div>
+    </div>
+</body>
+<script>
+    const p = document.querySelector('.draggablep')
+    const col2 = document.querySelector('#col2')
+    p.addEventListener('dragstart', handleDragStart)
+    col2.addEventListener('dragover', handleDragOver)
+    col2.addEventListener('drop', handleDrop)
+
+    function handleDragStart(e){
+        console.log('Drag Started');
+        e.dataTransfer.setData('id', e.target.dataset.id)
+
+
+            // Create a ghost preview element
+    const ghost = e.target.cloneNode(true);
+    ghost.style.position = 'absolute';
+    ghost.style.top = '-9999px'; // Hide it offscreen
+    ghost.style.pointerEvents = 'none'; // Prevent interaction
+
+    ghost.style.backgroundColor = 'red';
+    ghost.style.padding = '5px';
+    ghost.style.border = '1px dashed white';
+
+    document.body.appendChild(ghost);
+
+    // Set the custom drag image
+    e.dataTransfer.setDragImage(ghost, 0, 0);
+
+    // Optional: Remove the ghost after a delay (to ensure it was used)
+    setTimeout(() => document.body.removeChild(ghost), 0);
+
+    }
+
+    function handleDragOver(e){
+        e.preventDefault()
+    }
+
+    function handleDrop(e){
+        e.preventDefault()
+        const data = e.dataTransfer.getData('id')
+        const element = document.querySelector(`[data-id='${data}']`)
+        col2.appendChild(element)
+    }
+</script>
+</html>
